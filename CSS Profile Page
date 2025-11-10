@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Suchanda Dutta - Profile</title>
+
+    <style>
+        /* Basic Page Styling */
+        body {
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #333;
+        }
+
+        /* Centered layout box */
+        .container {
+            width: 80%;
+            margin: auto;
+            background-color: #ffffff;
+            border: 2px solid #87ceeb;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        /* Headings */
+        h1, h2 {
+            text-align: center;
+            color: darkblue;
+        }
+
+        /* Image styling */
+        img {
+            display: block;
+            margin: 10px auto;
+            width: 180px;
+            height: 180px;
+            border-radius: 10px;
+            border: 2px solid #333;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #add8e6;
+        }
+
+        /* List */
+        ol {
+            margin-left: 40px;
+        }
+
+        /* Form Styling */
+        form {
+            background-color: #e6f7ff;
+            border: 1px solid #87ceeb;
+            border-radius: 8px;
+            padding: 10px;
+            width: 90%;
+            margin: auto;
+        }
+
+        input, textarea {
+            width: 95%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: darkblue;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        /* Canvas */
+        canvas {
+            display: block;
+            margin: 15px auto;
+            border: 2px dashed #87ceeb;
+            background-color: #ffffff;
+        }
+
+        /* Media */
+        video, audio {
+            display: block;
+            margin: 10px auto;
+        }
+
+        /* Text effect */
+        h2:hover {
+            color: darkgreen;
+        }
+
+        hr {
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>Hello! I'm Suchanda Dutta</h1>
+        <p style="text-align:center;">Welcome to my simple HTML and CSS profile page.</p>
+
+        <hr>
+
+        <!-- Image -->
+        <img src="myprofile.jpg" alt="My Profile Picture">
+
+        <h2>About Me</h2>
+        <p>I am learning web development using <b>HTML</b> and <b>CSS</b>. I love designing web pages and exploring new technologies.<br>
+        This page shows the use of colors, layouts, forms, media, and basic styling.</p>
+
+        <hr>
+
+        <!-- Table -->
+        <h2>My Education</h2>
+        <table>
+            <tr>
+                <th>Qualification</th>
+                <th>Institute</th>
+                <th>Year</th>
+                <th>Grade</th>
+            </tr>
+            <tr>
+                <td>10th</td>
+                <td>ABC High School</td>
+                <td>2020</td>
+                <td>80%</td>
+            </tr>
+            <tr>
+                <td>12th</td>
+                <td>XYZ Junior College</td>
+                <td>2022</td>
+                <td>77%</td>
+            </tr>
+            <tr>
+                <td>B.Tech (CSE)</td>
+                <td>VIT Engineering College</td>
+                <td>2023</td>
+                <td>8.5 CGPA</td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <!-- List -->
+        <h2>My Hobbies</h2>
+        <ol>
+            <li>Reading</li>
+            <li>Listening to Music</li>
+            <li>Coding</li>
+            <li>Traveling</li>
+        </ol>
+
+        <hr>
+
+        <!-- Canvas -->
+        <h2>Canvas Example</h2>
+        <canvas id="myCanvas" width="250" height="120"></canvas>
+        <script>
+            const c = document.getElementById("myCanvas");
+            const ctx = c.getContext("2d");
+            ctx.fillStyle = "#add8e6";
+            ctx.fillRect(20, 20, 210, 80);
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "darkblue";
+            ctx.fillText("Hello Canvas!", 60, 65);
+        </script>
+
+        <hr>
+
+        <!-- Media -->
+        <h2>My Media Section</h2>
+        <video width="300" height="180" controls>
+            <source src="sample.mp4" type="video/mp4">
+            Your browser does not support video.
+        </video>
+
+        <audio controls>
+            <source src="sample.mp3" type="audio/mpeg">
+            Your browser does not support audio.
+        </audio>
+
+        <hr>
+
+        <!-- Contact Form -->
+        <h2>Contact Me</h2>
+        <form>
+            <label><b>Name:</b></label><br>
+            <input type="text" placeholder="Enter your name"><br>
+
+            <label><b>Email:</b></label><br>
+            <input type="email" placeholder="Enter your email"><br>
+
+            <label><b>Message:</b></label><br>
+            <textarea rows="3" placeholder="Your message here..."></textarea><br>
+
+            <input type="submit" value="Send Message">
+        </form>
+
+        <hr>
+
+        <center><p>© 2025 Suchanda Dutta | Created using HTML & CSS</p></center>
+    </div>
+</body>
+</html>
