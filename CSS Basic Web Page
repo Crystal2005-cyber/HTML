@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Basic Web Page</title>
+
+    <!-- Internal CSS Styling -->
+    <style>
+        /* --- Basic Page Setup --- */
+        body {
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+
+        /* --- Main Container --- */
+        .container {
+            background-color: #ffffff;
+            border: 2px solid #87ceeb;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        /* --- Headings --- */
+        h1 {
+            color: darkblue;
+            text-align: center;
+            text-shadow: 1px 1px 2px #87ceeb;
+        }
+
+        h2 {
+            color: #006400;
+            border-bottom: 2px solid #90ee90;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            color: #333366;
+        }
+
+        /* --- Paragraphs --- */
+        p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        /* --- Navigation Links --- */
+        a {
+            color: darkblue;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            color: darkred;
+            text-decoration: underline;
+        }
+
+        /* --- Table Styling --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border: 1px solid #555;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #add8e6;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* --- Lists --- */
+        ol, ul, dl {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        /* --- Image --- */
+        img {
+            display: block;
+            margin: 10px auto;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+
+        /* --- Form Styling --- */
+        form {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            width: 90%;
+            margin: auto;
+        }
+
+        input, textarea {
+            width: 95%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: darkblue;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: navy;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background-color: #ccc;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <h1>My Basic Web Page</h1>
+    <p><b>Created using only HTML tags and styled with CSS</b></p>
+
+    <hr>
+
+    <!-- Navigation Links -->
+    <p style="text-align:center;">
+        <a href="#intro">Introduction</a> |
+        <a href="#lists">Lists</a> |
+        <a href="#table">Table</a> |
+        <a href="#image">Image</a> |
+        <a href="#form">Form</a>
+    </p>
+
+    <hr>
+
+    <!-- Introduction Section -->
+    <h2 id="intro">Introduction</h2>
+    <p>This web page demonstrates the use of several basic HTML tags styled with CSS.</p>
+    <p>HTML stands for <b>HyperText Markup Language</b> and is used to structure content on the web.</p>
+    <p><i>“Learning HTML is the first step towards becoming a web developer.”</i></p>
+
+    <hr>
+
+    <!-- Lists Section -->
+    <h2 id="lists">Lists</h2>
+
+    <h3>Ordered List</h3>
+    <ol>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ol>
+
+    <h3>Unordered List</h3>
+    <ul>
+        <li>Front-end</li>
+        <li>Back-end</li>
+        <li>Database</li>
+    </ul>
+
+    <h3>Definition List</h3>
+    <dl>
+        <dt><b>HTML</b></dt>
+        <dd>Defines the structure of web pages.</dd>
+        <dt><b>CSS</b></dt>
+        <dd>Defines the style of web pages.</dd>
+    </dl>
+
+    <hr>
+
+    <!-- Table Section -->
+    <h2 id="table">Table Example</h2>
+    <h3>Student Grades</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Subject</th>
+            <th>Grade</th>
+        </tr>
+        <tr>
+            <td>Ali</td>
+            <td>Math</td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <td>Sara</td>
+            <td>Science</td>
+            <td>B+</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <!-- Image Section -->
+    <h2 id="image">Image Example</h2>
+    <p style="text-align:center;"><b>Placeholder image</b></p>
+    <img src="placeholder.jpg" alt="Placeholder Image" width="200" height="150">
+    <p style="text-align:center;">Image inserted using the &lt;img&gt; tag.</p>
+
+    <hr>
+
+    <!-- Contact Form -->
+    <h2 id="form">Contact Form</h2>
+    <form>
+        <label><b>Name:</b></label><br>
+        <input type="text" name="name"><br>
+
+        <label><b>Email:</b></label><br>
+        <input type="email" name="email"><br>
+
+        <label><b>Message:</b></label><br>
+        <textarea name="message" rows="4"></textarea><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <footer>
+        <p>© 2025 My Basic HTML Web Page</p>
+    </footer>
+
+</div>
+</body>
+</html>
