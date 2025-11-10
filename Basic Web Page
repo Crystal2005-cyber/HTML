@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Basic Web Page</title>
+</head>
+
+<body>
+
+    <h1>My Basic Web Page</h1>
+    <p><b>Created using only HTML tags</b></p>
+
+    <hr>
+
+    <!-- Navigation Links -->
+    <p>
+        <a href="#intro">Introduction</a>  |  
+        <a href="#lists">Lists</a>  |  
+        <a href="#table">Table</a>  |  
+        <a href="#image">Image</a>  |  
+        <a href="#form">Form</a>
+    </p>
+
+    <hr>
+
+    <!-- Introduction Section -->
+    <h2 id="intro">Introduction</h2>
+    <p>This web page demonstrates the use of several basic HTML tags.</p>
+    <p>HTML stands for <b>HyperText Markup Language</b> and is used to structure content on the web.</p>
+    <p><i>“Learning HTML is the first step towards becoming a web developer.”</i></p>
+
+    <hr>
+
+    <!-- Lists Section -->
+    <h2 id="lists">Lists</h2>
+
+    <h3>Ordered List</h3>
+    <ol>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ol>
+
+    <h3>Unordered List</h3>
+    <ul>
+        <li>Front-end</li>
+        <li>Back-end</li>
+        <li>Database</li>
+    </ul>
+
+    <h3>Definition List</h3>
+    <dl>
+        <dt><b>HTML</b></dt>
+        <dd>Defines the structure of web pages.</dd>
+        <dt><b>CSS</b></dt>
+        <dd>Defines the style of web pages.</dd>
+    </dl>
+
+    <hr>
+
+    <!-- Table Section -->
+    <h2 id="table">Table Example</h2>
+    <h3>Student Grades</h3>
+    <table border="1" cellpadding="6" cellspacing="0">
+        <tr>
+            <th>Name</th>
+            <th>Subject</th>
+            <th>Grade</th>
+        </tr>
+        <tr>
+            <td>Ali</td>
+            <td>Math</td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <td>Sara</td>
+            <td>Science</td>
+            <td>B+</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <!-- Image Section -->
+    <h2 id="image">Image Example</h2>
+    <p><b>Placeholder image</b></p>
+    <img src="placeholder.jpg" alt="Placeholder Image" width="200" height="150">
+    <p>Image inserted using the &lt;img&gt; tag.</p>
+
+    <hr>
+
+    <!-- Contact Form -->
+    <h2 id="form">Contact Form</h2>
+    <form>
+        <label>Name:</label><br>
+        <input type="text" name="name"><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email"><br><br>
+
+        <label>Message:</label><br>
+        <textarea name="message" rows="4" cols="30"></textarea><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <hr>
+
+    <p>© 2025 My Basic HTML Web Page</p>
+
+</body>
+</html>
