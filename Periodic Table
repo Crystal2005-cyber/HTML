@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Interactive Periodic Table (All 118 Elements)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f8faff;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+h1 {
+  color: darkblue;
+  margin-bottom: 15px;
+}
+#ptable {
+  display: grid;
+  grid-template-columns: repeat(18, 60px);
+  grid-auto-rows: 65px;
+  gap: 3px;
+  justify-content: center;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.element {
+  border-radius: 5px;
+  font-size: 11px;
+  padding: 3px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.element:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+.number { font-size: 9px; text-align: right; }
+.symbol { font-size: 15px; font-weight: bold; line-height: 1; }
+.name { font-size: 9px; opacity: 0.7; }
+
+/* Color categories */
+.alkali { background: #ffb3b3; }
+.alkaline { background: #ffe066; }
+.transition { background: #b2f0a1; }
+.metalloid { background: #d3b3ff; }
+.nonmetal { background: #a7e0ff; }
+.noble { background: #fff6a1; }
+.lanth { background: #ffb6c1; }
+.actin { background: #ffcc99; }
+
+/* Info box */
+#details {
+  margin-top: 18px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  width: 300px;
+  margin-inline: auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: none;
+}
+#details h3 { color: darkgreen; margin: 0 0 5px; }
+#details p { margin: 5px 0; font-size: 14px; }
+
+footer {
+  margin-top: 25px;
+  color: #666;
+  font-size: 13px;
+}
+</style>
+</head>
+<body>
+
+<h1>Interactive Periodic Table (All 118 Elements)</h1>
+
+<div id="ptable"></div>
+
+<div id="details">
+  <h3 id="elName">Element Name</h3>
+  <p><b>Atomic Number:</b> <span id="elNumber"></span></p>
+  <p><b>Symbol:</b> <span id="elSymbol"></span></p>
+  <p><b>Category:</b> <span id="elCategory"></span></p>
+</div>
+
+<footer>© 2025 Periodic Table by Suchanda Dutta | HTML, CSS & JavaScript</footer>
+
+<script>
+const data = [
+  // --- Periods 1–7 (main table) ---
+  {n:1,s:"H",name:"Hydrogen",cat:"nonmetal",x:1,y:1},
+  {n:2,s:"He",name:"Helium",cat:"noble",x:18,y:1},
+  {n:3,s:"Li",name:"Lithium",cat:"alkali",x:1,y:2},
+  {n:4,s:"Be",name:"Beryllium",cat:"alkaline",x:2,y:2},
+  {n:5,s:"B",name:"Boron",cat:"metalloid",x:13,y:2},
+  {n:6,s:"C",name:"Carbon",cat:"nonmetal",x:14,y:2},
+  {n:7,s:"N",name:"Nitrogen",cat:"nonmetal",x:15,y:2},
+  {n:8,s:"O",name:"Oxygen",cat:"nonmetal",x:16,y:2},
+  {n:9,s:"F",name:"Fluorine",cat:"nonmetal",x:17,y:2},
+  {n:10,s:"Ne",name:"Neon",cat:"noble",x:18,y:2},
+  {n:11,s:"Na",name:"Sodium",cat:"alkali",x:1,y:3},
+  {n:12,s:"Mg",name:"Magnesium",cat:"alkaline",x:2,y:3},
+  {n:13,s:"Al",name:"Aluminium",cat:"metalloid",x:13,y:3},
+  {n:14,s:"Si",name:"Silicon",cat:"metalloid",x:14,y:3},
+  {n:15,s:"P",name:"Phosphorus",cat:"nonmetal",x:15,y:3},
+  {n:16,s:"S",name:"Sulfur",cat:"nonmetal",x:16,y:3},
+  {n:17,s:"Cl",name:"Chlorine",cat:"nonmetal",x:17,y:3},
+  {n:18,s:"Ar",name:"Argon",cat:"noble",x:18,y:3},
+  {n:19,s:"K",name:"Potassium",cat:"alkali",x:1,y:4},
+  {n:20,s:"Ca",name:"Calcium",cat:"alkaline",x:2,y:4},
+  {n:21,s:"Sc",name:"Scandium",cat:"transition",x:3,y:4},
+  {n:22,s:"Ti",name:"Titanium",cat:"transition",x:4,y:4},
+  {n:23,s:"V",name:"Vanadium",cat:"transition",x:5,y:4},
+  {n:24,s:"Cr",name:"Chromium",cat:"transition",x:6,y:4},
+  {n:25,s:"Mn",name:"Manganese",cat:"transition",x:7,y:4},
+  {n:26,s:"Fe",name:"Iron",cat:"transition",x:8,y:4},
+  {n:27,s:"Co",name:"Cobalt",cat:"transition",x:9,y:4},
+  {n:28,s:"Ni",name:"Nickel",cat:"transition",x:10,y:4},
+  {n:29,s:"Cu",name:"Copper",cat:"transition",x:11,y:4},
+  {n:30,s:"Zn",name:"Zinc",cat:"transition",x:12,y:4},
+  {n:31,s:"Ga",name:"Gallium",cat:"metalloid",x:13,y:4},
+  {n:32,s:"Ge",name:"Germanium",cat:"metalloid",x:14,y:4},
+  {n:33,s:"As",name:"Arsenic",cat:"metalloid",x:15,y:4},
+  {n:34,s:"Se",name:"Selenium",cat:"nonmetal",x:16,y:4},
+  {n:35,s:"Br",name:"Bromine",cat:"nonmetal",x:17,y:4},
+  {n:36,s:"Kr",name:"Krypton",cat:"noble",x:18,y:4},
+  {n:37,s:"Rb",name:"Rubidium",cat:"alkali",x:1,y:5},
+  {n:38,s:"Sr",name:"Strontium",cat:"alkaline",x:2,y:5},
+  {n:39,s:"Y",name:"Yttrium",cat:"transition",x:3,y:5},
+  {n:40,s:"Zr",name:"Zirconium",cat:"transition",x:4,y:5},
+  {n:41,s:"Nb",name:"Niobium",cat:"transition",x:5,y:5},
+  {n:42,s:"Mo",name:"Molybdenum",cat:"transition",x:6,y:5},
+  {n:43,s:"Tc",name:"Technetium",cat:"transition",x:7,y:5},
+  {n:44,s:"Ru",name:"Ruthenium",cat:"transition",x:8,y:5},
+  {n:45,s:"Rh",name:"Rhodium",cat:"transition",x:9,y:5},
+  {n:46,s:"Pd",name:"Palladium",cat:"transition",x:10,y:5},
+  {n:47,s:"Ag",name:"Silver",cat:"transition",x:11,y:5},
+  {n:48,s:"Cd",name:"Cadmium",cat:"transition",x:12,y:5},
+  {n:49,s:"In",name:"Indium",cat:"metalloid",x:13,y:5},
+  {n:50,s:"Sn",name:"Tin",cat:"metalloid",x:14,y:5},
+  {n:51,s:"Sb",name:"Antimony",cat:"metalloid",x:15,y:5},
+  {n:52,s:"Te",name:"Tellurium",cat:"metalloid",x:16,y:5},
+  {n:53,s:"I",name:"Iodine",cat:"nonmetal",x:17,y:5},
+  {n:54,s:"Xe",name:"Xenon",cat:"noble",x:18,y:5},
+  {n:55,s:"Cs",name:"Cesium",cat:"alkali",x:1,y:6},
+  {n:56,s:"Ba",name:"Barium",cat:"alkaline",x:2,y:6},
+  {n:72,s:"Hf",name:"Hafnium",cat:"transition",x:4,y:6},
+  {n:73,s:"Ta",name:"Tantalum",cat:"transition",x:5,y:6},
+  {n:74,s:"W",name:"Tungsten",cat:"transition",x:6,y:6},
+  {n:75,s:"Re",name:"Rhenium",cat:"transition",x:7,y:6},
+  {n:76,s:"Os",name:"Osmium",cat:"transition",x:8,y:6},
+  {n:77,s:"Ir",name:"Iridium",cat:"transition",x:9,y:6},
+  {n:78,s:"Pt",name:"Platinum",cat:"transition",x:10,y:6},
+  {n:79,s:"Au",name:"Gold",cat:"transition",x:11,y:6},
+  {n:80,s:"Hg",name:"Mercury",cat:"transition",x:12,y:6},
+  {n:81,s:"Tl",name:"Thallium",cat:"metalloid",x:13,y:6},
+  {n:82,s:"Pb",name:"Lead",cat:"metalloid",x:14,y:6},
+  {n:83,s:"Bi",name:"Bismuth",cat:"metalloid",x:15,y:6},
+  {n:84,s:"Po",name:"Polonium",cat:"metalloid",x:16,y:6},
+  {n:85,s:"At",name:"Astatine",cat:"nonmetal",x:17,y:6},
+  {n:86,s:"Rn",name:"Radon",cat:"noble",x:18,y:6},
+  {n:87,s:"Fr",name:"Francium",cat:"alkali",x:1,y:7},
+  {n:88,s:"Ra",name:"Radium",cat:"alkaline",x:2,y:7},
+  {n:104,s:"Rf",name:"Rutherfordium",cat:"transition",x:4,y:7},
+  {n:105,s:"Db",name:"Dubnium",cat:"transition",x:5,y:7},
+  {n:106,s:"Sg",name:"Seaborgium",cat:"transition",x:6,y:7},
+  {n:107,s:"Bh",name:"Bohrium",cat:"transition",x:7,y:7},
+  {n:108,s:"Hs",name:"Hassium",cat:"transition",x:8,y:7},
+  {n:109,s:"Mt",name:"Meitnerium",cat:"transition",x:9,y:7},
+  {n:110,s:"Ds",name:"Darmstadtium",cat:"transition",x:10,y:7},
+  {n:111,s:"Rg",name:"Roentgenium",cat:"transition",x:11,y:7},
+  {n:112,s:"Cn",name:"Copernicium",cat:"transition",x:12,y:7},
+  {n:113,s:"Nh",name:"Nihonium",cat:"metalloid",x:13,y:7},
+  {n:114,s:"Fl",name:"Flerovium",cat:"metalloid",x:14,y:7},
+  {n:115,s:"Mc",name:"Moscovium",cat:"metalloid",x:15,y:7},
+  {n:116,s:"Lv",name:"Livermorium",cat:"metalloid",x:16,y:7},
+  {n:117,s:"Ts",name:"Tennessine",cat:"nonmetal",x:17,y:7},
+  {n:118,s:"Og",name:"Oganesson",cat:"noble",x:18,y:7},
+  // --- Lanthanides (separate) ---
+  {n:57,s:"La",name:"Lanthanum",cat:"lanth",x:4,y:9},
+  {n:58,s:"Ce",name:"Cerium",cat:"lanth",x:5,y:9},
+  {n:59,s:"Pr",name:"Praseodymium",cat:"lanth",x:6,y:9},
+  {n:60,s:"Nd",name:"Neodymium",cat:"lanth",x:7,y:9},
+  {n:61,s:"Pm",name:"Promethium",cat:"lanth",x:8,y:9},
+  {n:62,s:"Sm",name:"Samarium",cat:"lanth",x:9,y:9},
+  {n:63,s:"Eu",name:"Europium",cat:"lanth",x:10,y:9},
+  {n:64,s:"Gd",name:"Gadolinium",cat:"lanth",x:11,y:9},
+  {n:65,s:"Tb",name:"Terbium",cat:"lanth",x:12,y:9},
+  {n:66,s:"Dy",name:"Dysprosium",cat:"lanth",x:13,y:9},
+  {n:67,s:"Ho",name:"Holmium",cat:"lanth",x:14,y:9},
+  {n:68,s:"Er",name:"Erbium",cat:"lanth",x:15,y:9},
+  {n:69,s:"Tm",name:"Thulium",cat:"lanth",x:16,y:9},
+  {n:70,s:"Yb",name:"Ytterbium",cat:"lanth",x:17,y:9},
+  {n:71,s:"Lu",name:"Lutetium",cat:"lanth",x:18,y:9},
+  // --- Actinides (separate) ---
+  {n:89,s:"Ac",name:"Actinium",cat:"actin",x:4,y:10},
+  {n:90,s:"Th",name:"Thorium",cat:"actin",x:5,y:10},
+  {n:91,s:"Pa",name:"Protactinium",cat:"actin",x:6,y:10},
+  {n:92,s:"U",name:"Uranium",cat:"actin",x:7,y:10},
+  {n:93,s:"Np",name:"Neptunium",cat:"actin",x:8,y:10},
+  {n:94,s:"Pu",name:"Plutonium",cat:"actin",x:9,y:10},
+  {n:95,s:"Am",name:"Americium",cat:"actin",x:10,y:10},
+  {n:96,s:"Cm",name:"Curium",cat:"actin",x:11,y:10},
+  {n:97,s:"Bk",name:"Berkelium",cat:"actin",x:12,y:10},
+  {n:98,s:"Cf",name:"Californium",cat:"actin",x:13,y:10},
+  {n:99,s:"Es",name:"Einsteinium",cat:"actin",x:14,y:10},
+  {n:100,s:"Fm",name:"Fermium",cat:"actin",x:15,y:10},
+  {n:101,s:"Md",name:"Mendelevium",cat:"actin",x:16,y:10},
+  {n:102,s:"No",name:"Nobelium",cat:"actin",x:17,y:10},
+  {n:103,s:"Lr",name:"Lawrencium",cat:"actin",x:18,y:10},
+];
+
+// Build table
+const table=document.getElementById("ptable");
+data.forEach(e=>{
+  const div=document.createElement("div");
+  div.className=`element ${e.cat}`;
+  div.style.gridColumn=e.x;
+  div.style.gridRow=e.y;
+  div.innerHTML=`<div class='number'>${e.n}</div>
+                 <div class='symbol'>${e.s}</div>
+                 <div class='name'>${e.name}</div>`;
+  div.onclick=()=>showDetails(e);
+  table.appendChild(div);
+});
+
+// Onclick → show info below
+function showDetails(e){
+  document.getElementById("details").style.display="block";
+  document.getElementById("elName").innerText=`${e.name} (${e.s})`;
+  document.getElementById("elNumber").innerText=e.n;
+  document.getElementById("elSymbol").innerText=e.s;
+  document.getElementById("elCategory").innerText=e.cat;
+}
+</script>
+
+</body>
+</html>
