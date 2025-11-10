@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alphabet Image Display</title>
+
+    <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: darkblue;
+            text-shadow: 1px 1px 2px lightblue;
+        }
+
+        .alphabet-buttons {
+            margin: 20px auto;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 40px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        img {
+            margin-top: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            width: 250px;
+            height: 250px;
+            display: none; /* hidden until a letter is clicked */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Click a Letter to See Its Image</h1>
+
+    <div class="alphabet-buttons" id="buttons"></div>
+
+    <img id="alphabetImage" src="" alt="Alphabet Image">
+
+    <script>
+        // 1️⃣ Generate 26 alphabet buttons dynamically (A–Z)
+        const buttonContainer = document.getElementById("buttons");
+
+        for (let i = 65; i <= 90; i++) { // ASCII values for A–Z
+            const letter = String.fromCharCode(i);
+            const btn = document.createElement("button");
+            btn.innerText = letter;
+            btn.onclick = function() { showImage(letter); };
+            buttonContainer.appendChild(btn);
+        }
+
+        // 2️⃣ Function to show respective image when a letter is clicked
+        function showImage(letter) {
+            const img = document.getElementById("alphabetImage");
+            img.src = letter + ".jpg";  // image names like A.jpg, B.jpg, etc.
+            img.alt = "Image for " + letter;
+            img.style.display = "block";
+        }
+    </script>
+</body>
+</html>
