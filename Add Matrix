@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Matrix Addition using Loops</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f8ff;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+h1 {
+  color: darkblue;
+  margin-bottom: 20px;
+}
+input {
+  width: 60px;
+  text-align: center;
+  margin: 2px;
+  padding: 5px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+button {
+  margin-top: 15px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #4CAF50;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+button:hover {
+  background: #388E3C;
+}
+table {
+  margin: 10px auto;
+  border-collapse: collapse;
+}
+td {
+  border: 1px solid #888;
+  padding: 6px 10px;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<h1>Matrix Addition using JavaScript Loops</h1>
+
+<label>Enter number of rows: <input type="number" id="rows" min="1" max="5" value="2"></label><br><br>
+<label>Enter number of columns: <input type="number" id="cols" min="1" max="5" value="2"></label><br><br>
+<button onclick="createMatrices()">Create Matrices</button>
+
+<div id="matrices"></div>
+<div id="result"></div>
+
+<script>
+function createMatrices() {
+  const rows = parseInt(document.getElementById("rows").value);
+  const cols = parseInt(document.getElementById("cols").value);
+  let html = "<h3>Enter values for Matrix A:</h3><table>";
+  for (let i = 0; i < rows; i++) {
+    html += "<tr>";
+    for (let j = 0; j < cols; j++) {
+      html += `<td><input type='number' id='a${i}${j}'></td>`;
+    }
+    html += "</tr>";
+  }
+  html += "</table>";
+
+  html += "<h3>Enter values for Matrix B:</h3><table>";
+  for (let i = 0; i < rows; i++) {
+    html += "<tr>";
+    for (let j = 0; j < cols; j++) {
+      html += `<td><input type='number' id='b${i}${j}'></td>`;
+    }
+    html += "</tr>";
+  }
+  html += "</table>";
+
+  html += `<button onclick="addMatrices(${rows},${cols})">Add Matrices</button>`;
+  document.getElementById("matrices").innerHTML = html;
+  document.getElementById("result").innerHTML = "";
+}
+
+function addMatrices(rows, cols) {
+  let sum = "<h3>Sum of Matrices (A + B):</h3><table>";
+  for (let i = 0; i < rows; i++) {
+    sum += "<tr>";
+    for (let j = 0; j < cols; j++) {
+      let a = parseFloat(document.getElementById(`a${i}${j}`).value) || 0;
+      let b = parseFloat(document.getElementById(`b${i}${j}`).value) || 0;
+      sum += `<td>${a + b}</td>`;
+    }
+    sum += "</tr>";
+  }
+  sum += "</table>";
+  document.getElementById("result").innerHTML = sum;
+}
+</script>
+
+</body>
+</html>
