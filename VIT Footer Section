@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VIT Footer Section</title>
+</head>
+<body bgcolor="#202020" text="white">
+
+    <table width="100%" cellpadding="10">
+        <tr>
+            <td valign="top">
+                <h3>VIT @ Connect</h3>
+                <ul>
+                    <li>IQAC</li>
+                    <li>Institutional Development Plan (IDP)</li>
+                    <li>NATS</li>
+                    <li>Industrial Visit Form</li>
+                    <li>Student's Code of Conduct</li>
+                    <li>Intranet</li>
+                    <li>Events Portal</li>
+                    <li>Student Login</li>
+                    <li>Parent Login</li>
+                    <li>Peopleorbit</li>
+                    <li>VIT Gmail</li>
+                </ul>
+
+                <h3>Other Links</h3>
+                <ul>
+                    <li>COVID 19 - Initiatives</li>
+                    <li>Site Map</li>
+                </ul>
+            </td>
+
+            <td valign="top">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li>IPR and Technology Transfer Cell</li>
+                </ul>
+
+                <h3>VISITORS</h3>
+                <ul>
+                    <li>Careers</li>
+                    <li>Alumni</li>
+                    <li>Contact Us</li>
+                    <li>Guest House</li>
+                    <li>Hotels in Vellore</li>
+                </ul>
+            </td>
+
+            <td valign="top">
+                <h3>Committees @ VIT</h3>
+                <ul>
+                    <li>Internal Complaints Committee (ICC)</li>
+                    <li>Student Grievance Redressal Committee</li>
+                    <li>Anti Ragging Committee</li>
+                    <li>Committee for Sustainability Initiatives</li>
+                    <li>Committee for ensuring Equity, Diversity and Inclusivity</li>
+                    <li>Mentoring Committee for Higher Studies</li>
+                    <li>Equal Opportunity Cell</li>
+                </ul>
+            </td>
+
+            <td valign="top" align="center">
+                <h3>VIT Campus Tour</h3>
+                <img src="vit-campus.jpg" alt="VIT Campus" width="250" height="150"><br><br>
+
+                <img src="vit-fraud-warning.jpg" alt="Beware of Fraud" width="250" height="150"><br><br>
+
+                <h4>Follow Us:</h4>
+                <a href="#"><img src="facebook.png" width="30" height="30"></a>
+                <a href="#"><img src="instagram.png" width="30" height="30"></a>
+                <a href="#"><img src="twitter.png" width="30" height="30"></a>
+                <a href="#"><img src="linkedin.png" width="30" height="30"></a>
+                <a href="#"><img src="youtube.png" width="30" height="30"></a>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
