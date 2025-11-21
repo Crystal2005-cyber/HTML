@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Contact Form with JS Object</title>
+<title>Contact Form with Validation and DOM</title>
 </head>
 <body>
 
@@ -64,34 +64,27 @@ function validateForm() {
         return false;
     }
 
-    // CLEAR ERROR
+    // Clear error
     document.getElementById("error").innerHTML = "";
 
-    // Save as OBJECT
+    // Save ONLY 3 fields in object
     let student = {
         firstName: fname,
         lastName: lname,
-        age: age,
-        email: email,
-        phone: phone,
-        message: msg
+        age: age
     };
 
-    // Display object on screen
+    // Display only the 3 fields
     document.getElementById("output").innerHTML =
         "<b>First Name:</b> " + student.firstName + "<br>" +
         "<b>Last Name:</b> " + student.lastName + "<br>" +
-        "<b>Age:</b> " + student.age + "<br>" +
-        "<b>Email:</b> " + student.email + "<br>" +
-        "<b>Phone:</b> " + student.phone + "<br>" +
-        "<b>Message:</b> " + student.message;
+        "<b>Age:</b> " + student.age;
 
-    return false; // prevent actual form submission
+    return false; // Prevent form submission
 }
 </script>
 
 </body>
 </html>
 
-  
  
