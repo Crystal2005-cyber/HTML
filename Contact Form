@@ -2,16 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Contact Form with JavaScript Validation</title>
+<title>Contact Form with JS Object</title>
 </head>
 <body>
 
 <h2>Contact Form</h2>
 
-<form name="contactForm" onsubmit="return validateForm()">
+<form onsubmit="return validateForm()">
 
-    <label>Name:</label><br>
-    <input type="text" id="name"><br><br>
+    <label>First Name:</label><br>
+    <input type="text" id="fname"><br><br>
+
+    <label>Last Name:</label><br>
+    <input type="text" id="lname"><br><br>
+
+    <label>Age:</label><br>
+    <input type="text" id="age"><br><br>
 
     <label>Email:</label><br>
     <input type="text" id="email"><br><br>
@@ -28,46 +34,64 @@
 
 <p id="error" style="color:red;"></p>
 
+<hr>
+
+<h3>Saved Object Output:</h3>
+<div id="output" style="font-size: 18px; color: green;"></div>
+
 <script>
 function validateForm() {
 
-    let name = document.getElementById("name").value.trim();
+    let fname = document.getElementById("fname").value.trim();
+    let lname = document.getElementById("lname").value.trim();
+    let age = document.getElementById("age").value.trim();
     let email = document.getElementById("email").value.trim();
     let phone = document.getElementById("phone").value.trim();
     let msg = document.getElementById("message").value.trim();
     let error = "";
 
-    // Name validation
-    if (name === "") {
-        error = "Name is required.";
-    }
+    // Validation
+    if (fname === "") error = "First Name is required.";
+    else if (lname === "") error = "Last Name is required.";
+    else if (age === "" || isNaN(age) || parseInt(age) <= 0) error = "Enter a valid age.";
+    else if (email === "" || !email.includes("@") || !email.includes(".")) error = "Enter a valid email.";
+    else if (phone === "" || isNaN(phone) || phone.length !== 10) error = "Phone must be 10 digits.";
+    else if (msg.length < 5) error = "Message must be at least 5 characters.";
 
-    // Email validation (simple pattern)
-    else if (email === "" || !email.includes("@") || !email.includes(".")) {
-        error = "Enter a valid email.";
-    }
-
-    // Phone: must be 10 digits
-    else if (phone === "" || isNaN(phone) || phone.length !== 10) {
-        error = "Phone number must be 10 digits.";
-    }
-
-    // Message validation
-    else if (msg.length < 5) {
-        error = "Message must be at least 5 characters.";
-    }
-
-    // If any error
+    // Display error
     if (error !== "") {
-        document.getElementById("error").innerText = error;
-        return false;  // prevent submission
+        document.getElementById("error").innerHTML = error;
+        return false;
     }
 
-    // Success
-    alert("Form submitted successfully!");
-    return true;
+    // CLEAR ERROR
+    document.getElementById("error").innerHTML = "";
+
+    // Save as OBJECT
+    let student = {
+        firstName: fname,
+        lastName: lname,
+        age: age,
+        email: email,
+        phone: phone,
+        message: msg
+    };
+
+    // Display object on screen
+    document.getElementById("output").innerHTML =
+        "<b>First Name:</b> " + student.firstName + "<br>" +
+        "<b>Last Name:</b> " + student.lastName + "<br>" +
+        "<b>Age:</b> " + student.age + "<br>" +
+        "<b>Email:</b> " + student.email + "<br>" +
+        "<b>Phone:</b> " + student.phone + "<br>" +
+        "<b>Message:</b> " + student.message;
+
+    return false; // prevent actual form submission
 }
 </script>
 
 </body>
 </html>
+
+  
+ 
