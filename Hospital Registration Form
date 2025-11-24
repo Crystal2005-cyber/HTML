@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hospital Registration Form</title>
+</head>
+<body>
+
+<h2>Hospital Registration Form</h2>
+
+<form onsubmit="return validateForm()">
+
+    <!-- Auto Patient ID -->
+    <label>Patient ID:</label><br>
+    <input type="text" id="patientId" readonly><br><br>
+
+    <!-- Basic Details -->
+    <label>First Name:</label><br>
+    <input type="text" id="fname"><br><br>
+
+    <label>Last Name:</label><br>
+    <input type="text" id="lname"><br><br>
+
+    <label>Date of Birth (DOB):</label><br>
+    <input type="date" id="dob"><br><br>
+
+    <label>Age:</label><br>
+    <input type="text" id="age"><br><br>
+
+    <label>Email ID:</label><br>
+    <input type="text" id="email"><br><br>
+
+    <label>Gender:</label><br>
+    <select id="gender">
+        <option value="">-- Select Gender --</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+    </select><br><br>
+
+    <!-- Phone BEFORE Emergency Contact -->
+    <label>Phone Number:</label><br>
+    <input type="text" id="phone"><br><br>
+
+    <!-- Emergency Contact -->
+    <label>Emergency Contact:</label><br>
+    <input type="text" id="emergency"><br><br>
+
+    <!-- Symptoms -->
+    <label>Symptoms:</label><br>
+    <textarea id="symptoms" rows="4" cols="30"></textarea><br><br>
+
+    <!-- Doctor -->
+    <label>Doctor / Specialist:</label><br>
+    <select id="doctor">
+        <option value="">-- Select Doctor --</option>
+        <option>General Physician</option>
+        <option>Cardiologist</option>
+        <option>Neurologist</option>
+        <option>Orthopedic</option>
+        <option>Dermatologist</option>
+        <option>Pediatrician</option>
+    </select><br><br>
+
+    <!-- Patient Type -->
+    <label>Patient Type:</label><br>
+    <select id="ptype" onchange="calculateCharges()">
+        <option value="">-- Select Type --</option>
+        <option value="OPD">OPD</option>
+        <option value="NON-OPD">Non-OPD / Admission</option>
+    </select><br><br>
+
+    <!-- Date & Time -->
+    <label>Admission / Appointment Date:</label><br>
+    <input type="date" id="admitDate"><br><br>
+
+    <label>Appointment Time:</label><br>
+    <input type="time" id="time"><br><br>
+
+    <!-- Charges -->
+    <label>Charges (₹):</label><br>
+    <input type="text" id="charges" readonly><br><br>
+
+    <input type="submit" value="Register Patient">
+
+</form>
+
+<p id="error" style="color:red;"></p>
+
+<hr>
+
+<h3>Saved Patient Information:</h3>
+<div id="output" style="font-size:18px; color:green;"></div>
+
+<script>
+// Auto-generate Patient ID
+function generatePatientID() {
+    let id = "PAT" + Math.floor(Math.random() * 90000 + 10000);
+    document.getElementById("patientId").value = id;
+}
+generatePatientID();
+
+// Auto charges based on OPD/NON-OPD
+function calculateCharges() {
+    let type = document.getElementById("ptype").value;
+
+    if (type === "OPD") {
+        document.getElementById("charges").value = "300";
+    }
+    else if (type === "NON-OPD") {
+        document.getElementById("charges").value = "1500";
+    }
+    else {
+        document.getElementById("charges").value = "";
+    }
+}
+
+function validateForm() {
+
+    // Get values
+    let fname = document.getElementById("fname").value.trim();
+    let age = document.getElementById("age").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let symptoms = document.getElementById("symptoms").value.trim();
+
+    let error = "";
+
+    // **ONLY 5 VALIDATIONS** (simple)
+    if (fname === "") error = "First name required.";
+    else if (age === "" || isNaN(age) || age <= 0) error = "Enter valid age.";
+    else if (phone === "" || isNaN(phone) || phone.length !== 10) error = "Enter valid phone number.";
+    else if (email === "" || !email.includes("@") || !email.includes(".")) error = "Enter valid email.";
+    else if (symptoms.length < 3) error = "Please enter symptoms correctly.";
+
+    if (error !== "") {
+        document.getElementById("error").innerHTML = error;
+        return false;
+    }
+
+    document.getElementById("error").innerHTML = "";
+
+    // Save object
+    let patient = {
+        patientId: document.getElementById("patientId").value,
+        firstName: fname,
+        lastName: document.getElementById("lname").value.trim(),
+        dob: document.getElementById("dob").value,
+        age: age,
+        email: email,
+        phone: phone,
+        emergency: document.getElementById("emergency").value.trim(),
+        symptoms: symptoms,
+        doctor: document.getElementById("doctor").value,
+        patientType: document.getElementById("ptype").value,
+        admitDate: document.getElementById("admitDate").value,
+        time: document.getElementById("time").value,
+        charges: document.getElementById("charges").value
+    };
+
+    // Display output
+    document.getElementById("output").innerHTML =
+        "<b>Patient ID:</b> " + patient.patientId + "<br>" +
+        "<b>Name:</b> " + patient.firstName + " " + patient.lastName + "<br>" +
+        "<b>DOB:</b> " + patient.dob + "<br>" +
+        "<b>Age:</b> " + patient.age + "<br>" +
+        "<b>Email:</b> " + patient.email + "<br>" +
+        "<b>Phone:</b> " + patient.phone + "<br>" +
+        "<b>Emergency Contact:</b> " + patient.emergency + "<br>" +
+        "<b>Symptoms:</b> " + patient.symptoms + "<br>" +
+        "<b>Doctor:</b> " + patient.doctor + "<br>" +
+        "<b>Type:</b> " + patient.patientType + "<br>" +
+        "<b>Date:</b> " + patient.admitDate + "<br>" +
+        "<b>Time:</b> " + patient.time + "<br>" +
+        "<b>Charges:</b> ₹" + patient.charges;
+
+    return false;
+}
+</script>
+
+</body>
+</html>
