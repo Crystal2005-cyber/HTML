@@ -38,7 +38,7 @@
         <option>Other</option>
     </select><br><br>
 
-    <!-- Phone BEFORE Emergency Contact -->
+    <!-- Contact -->
     <label>Phone Number:</label><br>
     <input type="text" id="phone"><br><br>
 
@@ -51,7 +51,7 @@
     <textarea id="symptoms" rows="4" cols="30"></textarea><br><br>
 
     <!-- Doctor -->
-    <label>Doctor / Specialist:</label><br>
+    <label>Doctor:</label><br>
     <select id="doctor">
         <option value="">-- Select Doctor --</option>
         <option>General Physician</option>
